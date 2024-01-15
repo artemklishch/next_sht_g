@@ -1,4 +1,4 @@
-import { redirect } from 'next/navigation'
+import { redirect, notFound } from 'next/navigation'
 import { db } from '@/app/db'
 
 export default function SnippetCreatePage() {
@@ -12,11 +12,12 @@ export default function SnippetCreatePage() {
 
         // Create a new record in the database
         const snippet = await db.snippet.create({ data: { title, code } })
-        console.log("snippet", snippet)
+        // console.log("snippet", snippet)
 
         // Redirect the user back to the root route
         redirect('/')
     }
+    // notFound()
     return (
         <form action={createSnippet}>
             <h3 className="font-bold m-3">Create a Snippet</h3>
